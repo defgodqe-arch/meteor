@@ -1,5 +1,8 @@
-name: Publish Development Build
+name: Build and Release
 on: push
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -18,17 +21,31 @@ jobs:
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
-          java-version: 25
+          java-version: 21
 
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Release
+      - name: Release 1.21.11 build
         uses: softprops/action-gh-release@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: snapshot
-          name: Dev Build
-          prerelease: true
+          tag_name: v0.1.0-1.21.11
+          name: defgodqe Meteor Addon v0.1.0 — Minecraft 1.21.11
+          body: |
+            ## defgodqe Meteor Addon
+
+            Minecraft: **1.21.11**
+            Loader: **Fabric**
+            Client: **Meteor**
+
+            ### Included
+            - Mace Elytra module
+            - Automatically equips an Elytra after a mace attack
+            - Automatically switches to a Firework Rocket in the hotbar
+
+            ### Installation
+            Put the JAR in `%appdata%/.minecraft/mods` alongside the matching Meteor Client and Fabric installation.
+          prerelease: false
           files: |
             ./build/libs/*.jar
