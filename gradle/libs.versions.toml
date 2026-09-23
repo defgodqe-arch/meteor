@@ -25,4 +25,4 @@ meteor-client = { module = "meteordevelopment:meteor-client", version.ref = "met
 # Mods
 
 [plugins]
-fabric-loom = { id = "net.fabricmc.fabric-loom", version.ref = "loom" }
+fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "loom" }
